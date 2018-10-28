@@ -59,3 +59,62 @@
 (update-list-map [1 2 3 4 5])
 (update-list-map [-1 -2 -3 -4 -5])
 (update-list-map [1 -2 3 -4 5])
+
+;; reducing the shopping cart
+(def shopping-cart
+  [{ :product-title "Product 1" :amount 10 },
+   { :product-title "Product 2" :amount 30 },
+   { :product-title "Product 3" :amount 20 },
+   { :product-title "Product 4" :amount 60 }])
+
+(defn sum-amount
+  [total-amount current-product]
+  (+ (:amount current-product) total-amount))
+
+(defn get-total-amount
+  [shopping-cart]
+  (reduce sum-amount 0 shopping-cart))
+
+(get-total-amount shopping-cart)
+
+;; getting the total amount with map-reduce
+(def shopping-cart
+  [{ :product-title "Product 1" :amount 10 },
+   { :product-title "Product 2" :amount 30 },
+   { :product-title "Product 3" :amount 20 },
+   { :product-title "Product 4" :amount 60 }])
+
+(defn get-amount
+  [product]
+  (:amount product))
+
+(defn get-total-amount
+  [shopping-cart]
+  (reduce + (map get-amount shopping-cart)))
+
+(get-total-amount shopping-cart) ;; 120
+
+;; filter-map-reduce compose
+(def shopping-cart
+  [{ :product-title "Functional Programming" :type "books"      :amount 10 },
+   { :product-title "Kindle"                 :type "eletronics" :amount 30 },
+   { :product-title "Shoes"                  :type "fashion"    :amount 20 },
+   { :product-title "Clean Code"             :type "books"      :amount 60 }])
+
+(defn by-books
+  [product]
+  (= (:type product) "books"))
+
+(defn get-amount
+  [product]
+  (:amount product))
+
+(defn get-total-amount
+  [shopping-cart]
+  (reduce
+    +
+    (map
+      get-amount
+      (filter by-books shopping-cart))))
+
+(get-total-amount shopping-cart) ;; 70
