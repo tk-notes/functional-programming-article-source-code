@@ -53,3 +53,9 @@ counter ;; 1
   (if (> (rand) 0.5)
     "You get a raise!"
     "Better luck next year!"))
+
+(defn increment-numbers
+  [numbers]
+  (map inc numbers))
+
+(= [2 3 4 5 6] (increment-numbers [1 2 3 4 5]))
