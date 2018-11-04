@@ -28,3 +28,13 @@
          string))
 
 (slugify " I will be a url slug   ") ;; "i-will-be-a-url-slug"
+
+;; using threading macro
+(defn slugify
+  [string]
+  (-> string
+      (clojure.string/trim)
+      (clojure.string/lower-case)
+      (clojure.string/replace #" " "-")))
+
+(slugify " I will be a url slug   ") ;; "i-will-be-a-url-slug"

@@ -1,3 +1,35 @@
+// functions as arguments
+var doubleSum = function(a, b) {
+  return 2 * (a + b);
+}
+
+var doubleSubstraction = function(a, b) {
+  return 2 * (a - b);
+}
+
+var sum = function(a, b) {
+  return a + b;
+}
+
+var subtraction = function(a, b) {
+  return a - b;
+}
+
+var doubleOperator = function(f, a, b) {
+  return 2 * f(a, b);
+}
+
+doubleOperator(sum, 2, 2); // 8
+doubleOperator(subtraction, 4, 2); // 4
+
+
+const hi = (name) => `Hi ${name}`;
+
+const greeting = (name) => hi(name);
+
+greeting('TK');
+
+
 var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var evenNumbers = [];
 

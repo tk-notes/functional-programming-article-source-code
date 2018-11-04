@@ -11,6 +11,9 @@
   [f a b]
   (* 2 (f a b)))
 
+(double-operator + 2 2) ;; 8
+(double-operator - 4 2) ;; 4
+
 (defn even-numbers
   [coll]
   (filter even? coll))
